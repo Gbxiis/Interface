@@ -1,7 +1,6 @@
-# app/routes.py
 from flask import render_template, request, redirect, url_for
 from app import app
-from database import get_products, add_product, get_orders, add_order
+from database import get_products, add_product, delete_product, get_orders, add_order, delete_order
 
 @app.route('/')
 def home():
@@ -28,3 +27,13 @@ def add_order_route():
         return redirect(url_for('home'))
     products = get_products()
     return render_template('add_order.html', products=products)
+
+@app.route('/delete_product/<int:product_id>')
+def delete_product_route(product_id):
+    delete_product(product_id)
+    return redirect(url_for('home'))
+
+@app.route('/delete_order/<int:order_id>')
+def delete_order_route(order_id):
+    delete_order(order_id)
+    return redirect(url_for('home'))

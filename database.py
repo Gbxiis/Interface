@@ -1,4 +1,3 @@
-# database.py
 import sqlite3
 
 def create_connection():
@@ -47,6 +46,13 @@ def get_products():
     conn.close()
     return products
 
+def delete_product(product_id):
+    conn = create_connection()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM products WHERE id = ?', (product_id,))
+    conn.commit()
+    conn.close()
+
 def add_order(customer_name, product_id, quantity):
     conn = create_connection()
     cursor = conn.cursor()
@@ -65,5 +71,12 @@ def get_orders():
     orders = cursor.fetchall()
     conn.close()
     return orders
+
+def delete_order(order_id):
+    conn = create_connection()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM orders WHERE id = ?', (order_id,))
+    conn.commit()
+    conn.close()
 
 create_tables()

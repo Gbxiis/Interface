@@ -1,55 +1,56 @@
-/* app/static/style.css */
 body {
-    font-family: Arial, sans-serif;
-    color: #31312F;
-    background-color: #E2E3DD;
+  font-family: Arial, sans-serif;
+  color: #31312f;
+  background-color: #e2e3dd;
 }
 
 #centralizar {
-    width: 900px; /* largura desejada */
-    height: 500px; /* altura desejada */
-    background-color: #E5E1D8; /* cor de fundo para visualização */
-    position: absolute; /* posicionamento absoluto para facilitar centralização */
-    top: 50%; /* move 50% do topo */
-    left: 50%; /* move 50% da esquerda */
-    transform: translate(-50%, -50%); /* centraliza a div com base no seu próprio tamanho */
-    border: 10px solid #C5C5B9;
-    text-align: center;
+  width: 900px; 
+  height: 500px; 
+  background-color: #e5e1d8; 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(
+    -50%,
+    -50%
+  ); 
+  border: 10px solid #c5c5b9;
+  text-align: center;
 }
 
 a {
-    margin: 20px;
-    padding: 10px;
-    text-decoration: none;
-    
-  }
+  margin: 20px;
+  padding: 10px;
+  text-decoration: none;
+}
 
-  .custom-btn {
-    width: 130px;
-    height: 20px;
-    color: #31312F;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-     7px 7px 20px 0px rgba(0,0,0,.1),
-     4px 4px 5px 0px rgba(0,0,0,.1);
-    outline: none;
-  }
+.custom-btn {
+  text-align: center;
+  width: 130px;
+  height: 20px;
+  color: #31312f;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
 
-  .btn-1 {
-    background: #C5C5B9;
-    background: linear-gradient(0deg, #C5C5B9 0%,#E5E1D8 100%);
-    border: none;
-  }
+.btn-1 {
+  background: #c5c5b9;
+  background: linear-gradient(0deg, #c5c5b9 0%, #e5e1d8 100%);
+  border: none;
+}
 
-  .btn-1:hover {
-    background: rgb(0,3,255);
- background: linear-gradient(0deg,#E5E1D8 0%, #E2E3DD 100%);
- }
+.btn-1:hover {
+  background: rgb(0, 3, 255);
+  background: linear-gradient(0deg, #e5e1d8 0%, #e2e3dd 100%);
+}

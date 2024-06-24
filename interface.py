@@ -1,8 +1,7 @@
-# interface.py
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
-from database import add_product, get_products, add_order, get_orders
+from database import add_product, get_products, delete_product, add_order, get_orders, delete_order
 
 def add_product_window():
     def submit_product():
@@ -12,42 +11,50 @@ def add_product_window():
             try:
                 price = float(price)
                 add_product(name, price)
-                messagebox.showinfo("Sucesso", "Produto adicionado com sucesso!")
+                messagebox.showinfo("Success", "Product added successfully!")
                 add_window.destroy()
             except ValueError:
-                messagebox.showerror("Erro", "Insira um preço válido")
+                messagebox.showerror("Error", "Please enter a valid price")
         else:
-            messagebox.showerror("Erro", "Insira o nome e o preço")
+            messagebox.showerror("Error", "Please enter both name and price")
 
     add_window = tk.Toplevel(root)
-    add_window.title("Adicionar Produto")
+    add_window.title("Add Product")
     add_window.geometry("300x200")
     
     frame = ttk.Frame(add_window, padding="10")
     frame.pack(fill=tk.BOTH, expand=True)
     
-    ttk.Label(frame, text="Nome do Produto").grid(row=0, column=0, pady=5, sticky=tk.W)
+    ttk.Label(frame, text="Product Name").grid(row=0, column=0, pady=5, sticky=tk.W)
     name_entry = ttk.Entry(frame)
     name_entry.grid(row=0, column=1, pady=5)
     
-    ttk.Label(frame, text="Preço do Produto").grid(row=1, column=0, pady=5, sticky=tk.W)
+    ttk.Label(frame, text="Product Price").grid(row=1, column=0, pady=5, sticky=tk.W)
     price_entry = ttk.Entry(frame)
     price_entry.grid(row=1, column=1, pady=5)
     
-    ttk.Button(frame, text="Adicionar Produto", command=submit_product).grid(row=2, columnspan=2, pady=20)
+    ttk.Button(frame, text="Add Product", command=submit_product).grid(row=2, columnspan=2, pady=20)
 
 def show_products_window():
     products = get_products()
     
     show_window = tk.Toplevel(root)
-    show_window.title("Lista de Produtos")
+    show_window.title("Products List")
     show_window.geometry("400x300")
     
     frame = ttk.Frame(show_window, padding="10")
     frame.pack(fill=tk.BOTH, expand=True)
     
     for product in products:
-        ttk.Label(frame, text=f"ID: {product[0]} | Nome: {product[1]} | Preço: ${product[2]:.2f}").pack(pady=2, anchor=tk.W)
+        product_label = ttk.Label(frame, text=f"ID: {product[0]} | Name: {product[1]} | Price: ${product[2]:.2f}")
+        product_label.pack(pady=2, anchor=tk.W)
+        delete_button = ttk.Button(frame, text="Delete", command=lambda p_id=product[0]: delete_product_and_refresh(p_id, show_window))
+        delete_button.pack(pady=2, anchor=tk.W)
+
+def delete_product_and_refresh(product_id, window):
+    delete_product(product_id)
+    window.destroy()
+    show_products_window()
 
 def add_order_window():
     def submit_order():
@@ -67,7 +74,7 @@ def add_order_window():
             messagebox.showerror("Error", "Please enter all fields")
 
     order_window = tk.Toplevel(root)
-    order_window.title("Faça o pedido")
+    order_window.title("Place Order")
     order_window.geometry("300x250")
     
     frame = ttk.Frame(order_window, padding="10")
@@ -98,9 +105,16 @@ def show_orders_window():
     frame.pack(fill=tk.BOTH, expand=True)
     
     for order in orders:
-        ttk.Label(frame, text=f"Order ID: {order[0]} | Customer: {order[1]} | Product: {order[2]} | Quantity: {order[3]} | Total: ${order[4]:.2f}").pack(pady=2, anchor=tk.W)
+        order_label = ttk.Label(frame, text=f"Order ID: {order[0]} | Customer: {order[1]} | Product: {order[2]} | Quantity: {order[3]} | Total: ${order[4]:.2f}")
+        order_label.pack(pady=2, anchor=tk.W)
+        delete_button = ttk.Button(frame, text="Delete", command=lambda o_id=order[0]: delete_order_and_refresh(o_id, show_window))
+        delete_button.pack(pady=2, anchor=tk.W)
 
-# Configuração da interface gráfica principal
+def delete_order_and_refresh(order_id, window):
+    delete_order(order_id)
+    window.destroy()
+    show_orders_window()
+
 root = tk.Tk()
 root.title("Order Management System")
 root.geometry("400x300")
