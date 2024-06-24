@@ -1,0 +1,21 @@
+<!-- app/templates/add_product.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Produto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div  id="centralizar">
+    <h1>Adicionar Produto</h1>
+    <form action="{{ url_for('add_product_route') }}" method="POST">
+        <label for="name">Nome do produto:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="price">Preço do produto:</label><br>
+        <input type="text" id="price" name="price"><br><br>
+        <input type="submit" value="Adicionar">
+    </form>
+</div>
+</body>
+</html>

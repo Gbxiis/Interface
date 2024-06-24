@@ -1,0 +1,22 @@
+<!-- app/templates/add_order.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Order</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body><div  id="centralizar">
+    <h1>Faça o pedido</h1>
+    <form action="{{ url_for('add_order_route') }}" method="POST">
+        <label for="customer_name">Nome do Cliente:</label><br>
+        <input type="text" id="customer_name" name="customer_name"><br>
+        <label for="product_id">ID:</label><br>
+        <input type="text" id="product_id" name="product_id"><br>
+        <label for="quantity">Quantidade:</label><br>
+        <input type="text" id="quantity" name="quantity"><br><br>
+        <input type="submit" value="Encomendar">
+    </form>
+</div>
+</body>
+</html>

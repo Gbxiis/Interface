@@ -1,0 +1,27 @@
+<!-- app/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Management System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">    
+</head>
+<body>
+    <div id="centralizar"><h1>Sistema de gerenciamento de pedidos</h1>
+    <h2>Produtos</h2>
+    <ul>
+        {% for product in products %}
+            <li>{{ product[1] }} - R$ {{ product[2] }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Clientes</h2>
+    <ul>
+        {% for order in orders %}
+            <li>{{ order[1] }} encomendou {{ order[3] }} de {{ order[2] }} - Total: R$ {{ order[4]|round(2) }}</li>
+        {% endfor %}
+    </ul>
+    <a class="custom-btn btn-1"" href="{{ url_for('add_product_route') }}">Adicionar Produto</a>
+    <a class="custom-btn btn-1"" href="{{ url_for('add_order_route') }}">Faça o Pedido</a>
+</div>
+</body>
+</html>
